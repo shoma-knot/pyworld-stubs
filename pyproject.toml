@@ -1,0 +1,52 @@
+[project]
+name = "pyworld-stubs"
+version = "0.1.0"
+description = "Typing Stubs for pyworld"
+readme = "README.md"
+authors = [{ name = "Shoma KANNO", email = "sqrt.trill425@gmail.com" }]
+requires-python = ">=3.10"
+dependencies = ["pyworld>=0.3.4"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["mypy>=1.13.0", "ruff>=0.7.1"]
+
+
+[tool.ruff]
+# Same as Black.
+line-length = 88
+
+# Assume Python 3.10.
+target-version = "py310"
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_any_unimported = true
+# disallow_any_expr = true
+disallow_any_explicit = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
