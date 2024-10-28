@@ -4,18 +4,25 @@ version = "0.1.0"
 description = "Typing Stubs for pyworld"
 readme = "README.md"
 authors = [{ name = "Shoma KANNO", email = "sqrt.trill425@gmail.com" }]
-requires-python = ">=3.10"
-dependencies = ["pyworld>=0.3.4"]
+requires-python = ">=3.10.1"
+dependencies = [
+    "pyworld>=0.3.4",
+]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pyworld-stubs"]
+include = ["*.pyi"]
+exclude = [".vscode"]
 
 [dependency-groups]
-dev = ["mypy>=1.13.0", "ruff>=0.7.1"]
+dev = [
+    "hatch>=1.13.0",
+    "mypy>=1.13.0",
+    "ruff>=0.7.1",
+]
 
 
 [tool.ruff]
