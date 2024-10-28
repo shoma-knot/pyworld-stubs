@@ -11,6 +11,9 @@ dependencies = ["pyworld>=0.3.4"]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyworld-stubs"]
+
 [dependency-groups]
 dev = ["mypy>=1.13.0", "ruff>=0.7.1"]
 
