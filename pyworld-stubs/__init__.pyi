@@ -8,20 +8,20 @@ default_f0_floor = 71.0
 default_frame_period = 5.0
 
 def cheaptrick(
-    x: type_np.NDArray[np.float32],
-    f0: type_np.NDArray[np.float32],
-    temporal_positions: type_np.NDArray[np.float32],
+    x: type_np.NDArray[np.float64],
+    f0: type_np.NDArray[np.float64],
+    temporal_positions: type_np.NDArray[np.float64],
     fs: int,
     q1: float = -0.15,
     f0_floor: Optional[float] = default_f0_floor,
     fft_size: Optional[int] = None,
-) -> type_np.NDArray[np.float32]:
+) -> type_np.NDArray[np.float64]:
     """CheapTrick harmonic spectral envelope estimation algorithm.
 
     Args:
-        x (type_np.NDArray[np.float32]): Input waveform signal.
-        f0 (type_np.NDArray[np.float32]): Input F0 contour.
-        temporal_positions (type_np.NDArray[np.float32]): Temporal positions of each frame.
+        x (type_np.NDArray[np.float64]): Input waveform signal.
+        f0 (type_np.NDArray[np.float64]): Input F0 contour.
+        temporal_positions (type_np.NDArray[np.float64]): Temporal positions of each frame.
         fs (int): Sample rate of input signal in Hz.
         q1 (float, optional): Spectral recovery parameter. Default to -0.15 (this value was tuned and normally does not need adjustment).
         f0_floor (Optional[float], optional): Lower F0 limit in Hz. Not used in case `fft_size` is specified. Defaults to default_f0_floor.
@@ -30,56 +30,56 @@ def cheaptrick(
             When `fft_size` is specified, the given `f0_floor` parameter is ignored. Defaults to None.
 
     Returns:
-        type_np.NDArray[np.float32]: Spectral envelope (squared magnitude).
+        type_np.NDArray[np.float64]: Spectral envelope (squared magnitude).
     """
     pass
 
 def code_aperiodicity(
-    aperiodicity: type_np.NDArray[np.float32], fs: int
-) -> type_np.NDArray[np.float32]:
+    aperiodicity: type_np.NDArray[np.float64], fs: int
+) -> type_np.NDArray[np.float64]:
     """Reduce dimensionality of D4C aperiodicity.
 
     Args:
-        aperiodicity (type_np.NDArray[np.float32]): Aperodicity envelope.
+        aperiodicity (type_np.NDArray[np.float64]): Aperodicity envelope.
         fs (int): Sample rate of input signal in Hz.
 
     Returns:
-        type_np.NDArray[np.float32]: Coded aperiodicity envelope.
+        type_np.NDArray[np.float64]: Coded aperiodicity envelope.
     """
     pass
 
 def code_spectral_envelope(
-    spectrogram: type_np.NDArray[np.float32],
+    spectrogram: type_np.NDArray[np.float64],
     fs: int,
     number_of_dimensions: int,
-) -> type_np.NDArray[np.float32]:
+) -> type_np.NDArray[np.float64]:
     """Reduce dimensionality of spectral envelope.
 
     Args:
-        spectrogram (type_np.NDArray[np.float32]): Spectral envelope.
+        spectrogram (type_np.NDArray[np.float64]): Spectral envelope.
         fs (int): Sample rate of input signal in Hz.
         number_of_dimensions (int): Number of dimentions of coded spectral envelope
 
     Returns:
-        type_np.NDArray[np.float32]: Coded spectral envelope.
+        type_np.NDArray[np.float64]: Coded spectral envelope.
     """
     pass
 
 def d4c(
-    x: type_np.NDArray[np.float32],
-    f0: type_np.NDArray[np.float32],
-    temporal_positions: type_np.NDArray[np.float32],
+    x: type_np.NDArray[np.float64],
+    f0: type_np.NDArray[np.float64],
+    temporal_positions: type_np.NDArray[np.float64],
     fs: int,
     q1: float = -0.15,
     threshold: float = 0.85,
     fft_size: Optional[float] = None,
-) -> type_np.NDArray[np.float32]:
+) -> type_np.NDArray[np.float64]:
     """D4C aperiodicity estimation algorithm.
 
     Args:
-        x (type_np.NDArray[np.float32]): Input waveform signal.
-        f0 (type_np.NDArray[np.float32]): Input F0 contour.
-        temporal_positions (type_np.NDArray[np.float32]): Temporal positions of each frame.
+        x (type_np.NDArray[np.float64]): Input waveform signal.
+        f0 (type_np.NDArray[np.float64]): Input F0 contour.
+        temporal_positions (type_np.NDArray[np.float64]): Temporal positions of each frame.
         fs (int): Sample rate of input signal in Hz.
         q1 (float, optional): Spectral recovery parameter. Defaults to -0.15 (this value was tuned and normally does not need adjustment).
         threshold (float, optional):
@@ -92,42 +92,42 @@ def d4c(
             When `fft_size` is specified, it should match the FFT size used to compute the spectral envelope (i.e. `fft_size=2*(sp.shape[1] - 1)`) in order to get the desired results when resynthesizing. Defaults to None.
 
     Returns:
-        type_np.NDArray[np.float32]: Aperiodicity (envelope, linear magnitude relative to spectral envelope).
+        type_np.NDArray[np.float64]: Aperiodicity (envelope, linear magnitude relative to spectral envelope).
     """
     pass
 
 def decode_aperiodicity(
-    coded_aperiodicity: type_np.NDArray[np.float32], fs: int, fft_size: int
-) -> type_np.NDArray[np.float32]:
+    coded_aperiodicity: type_np.NDArray[np.float64], fs: int, fft_size: int
+) -> type_np.NDArray[np.float64]:
     """Restore full dimensionality of coded D4C aperiodicity.
 
     Args:
-        coded_aperiodicity (type_np.NDArray[np.float32]): Coded aperodicity envelope.
+        coded_aperiodicity (type_np.NDArray[np.float64]): Coded aperodicity envelope.
         fs (int): Sample rate of input signal in Hz.
         fft_size (int): FFT size corresponding to the full dimensional aperiodicity.
 
     Returns:
-        type_np.NDArray[np.float32]: Aperiodicity envelope.
+        type_np.NDArray[np.float64]: Aperiodicity envelope.
     """
     pass
 
 def decode_spectral_envelope(
-    coded_spectral_envelope: type_np.NDArray[np.float32], fs: int, fft_size: int
-) -> type_np.NDArray[np.float32]:
+    coded_spectral_envelope: type_np.NDArray[np.float64], fs: int, fft_size: int
+) -> type_np.NDArray[np.float64]:
     """Restore full dimensionality of coded spectral envelope.
 
     Args:
-        coded_spectral_envelope (type_np.NDArray[np.float32]): Coded spectral envelope.
+        coded_spectral_envelope (type_np.NDArray[np.float64]): Coded spectral envelope.
         fs (int): Sample rate of input signal in Hz.
         fft_size (int): FFT size corresponding to the full dimensional spectral envelope.
 
     Returns:
-        type_np.NDArray[np.float32]: Spectral envelope.
+        type_np.NDArray[np.float64]: Spectral envelope.
     """
     pass
 
 def dio(
-    x: type_np.NDArray[np.float32],
+    x: type_np.NDArray[np.float64],
     fs: int,
     f0_floor: float = default_f0_floor,
     f0_ceil: float = default_f0_ceil,
@@ -135,11 +135,11 @@ def dio(
     frame_period: float = default_frame_period,
     speed: int = 1,
     allowed_range: float = 0.1,
-) -> tuple[type_np.NDArray[np.float32], type_np.NDArray[np.float32]]:
+) -> tuple[type_np.NDArray[np.float64], type_np.NDArray[np.float64]]:
     """DIO F0 extraction algorithm.
 
     Args:
-        x (type_np.NDArray[np.float32]): Input waveform signal.
+        x (type_np.NDArray[np.float64]): Input waveform signal.
         fs (int): Sample rate of input signal in Hz.
         f0_floor (float, optional): Lower F0 limit in Hz. Defaults to default_f0_floor.
         f0_ceil (float, optional): Upper F0 limit in Hz. Defaults to default_f0_ceil.
@@ -154,7 +154,7 @@ def dio(
             Lower values will cause more frames to be considered unvoiced (in the extreme case of `threshold=0`, almost all frames will be unvoiced). Defaults to 0.1.
 
     Returns:
-        tuple[type_np.NDArray[np.float32], type_np.NDArray[np.float32]]: Tuple of **estimated F0 contour** and **temporal position of each frame**.
+        tuple[type_np.NDArray[np.float64], type_np.NDArray[np.float64]]: Tuple of **estimated F0 contour** and **temporal position of each frame**.
     """
     pass
 
@@ -197,82 +197,82 @@ def get_num_aperiodicities(fs: int) -> int:
     pass
 
 def harvest(
-    x: type_np.NDArray[np.float32],
+    x: type_np.NDArray[np.float64],
     fs: int,
     f0_floor: float = default_f0_floor,
     f0_ceil: float = default_f0_ceil,
     frame_period: float = default_frame_period,
-) -> tuple[type_np.NDArray[np.float32], type_np.NDArray[np.float32]]:
+) -> tuple[type_np.NDArray[np.float64], type_np.NDArray[np.float64]]:
     """Harvest F0 extraction algorithm.
 
     Args:
-        x (type_np.NDArray[np.float32]): Input waveform signal.
+        x (type_np.NDArray[np.float64]): Input waveform signal.
         fs (int): Sample rate of input signal in Hz.
         f0_floor (float, optional): Lower F0 limit in Hz. Defaults to default_f0_floor.
         f0_ceil (float, optional): Upper F0 limit in Hz. Defaults to default_f0_ceil.
         frame_period (float, optional): Period between consecutive frames in milliseconds. Defaults to default_frame_period.
 
     Returns:
-        tuple[type_np.NDArray[np.float32], type_np.NDArray[np.float32]]: Tuple of **estimated F0 contour** and **temporal position of each frame**.
+        tuple[type_np.NDArray[np.float64], type_np.NDArray[np.float64]]: Tuple of **estimated F0 contour** and **temporal position of each frame**.
     """
     pass
 
 def stonemask(
-    x: type_np.NDArray[np.float32],
-    f0: type_np.NDArray[np.float32],
-    temporal_positions: type_np.NDArray[np.float32],
+    x: type_np.NDArray[np.float64],
+    f0: type_np.NDArray[np.float64],
+    temporal_positions: type_np.NDArray[np.float64],
     fs: int,
-) -> type_np.NDArray[np.float32]:
+) -> type_np.NDArray[np.float64]:
     """StoneMask F0 refinement algorithm.
 
     Args:
-        x (type_np.NDArray[np.float32]): Input waveform signal.
-        f0 (type_np.NDArray[np.float32]): Input F0 contour.
-        temporal_positions (type_np.NDArray[np.float32]): Temporal positions of each frame.
+        x (type_np.NDArray[np.float64]): Input waveform signal.
+        f0 (type_np.NDArray[np.float64]): Input F0 contour.
+        temporal_positions (type_np.NDArray[np.float64]): Temporal positions of each frame.
         fs (int): Sample rate of input signal in Hz.
 
     Returns:
-        type_np.NDArray[np.float32]: Refined F0 contour.
+        type_np.NDArray[np.float64]: Refined F0 contour.
     """
     pass
 
 def synthesize(
-    f0: type_np.NDArray[np.float32],
-    spectrogram: type_np.NDArray[np.float32],
-    aperiodicity: type_np.NDArray[np.float32],
+    f0: type_np.NDArray[np.float64],
+    spectrogram: type_np.NDArray[np.float64],
+    aperiodicity: type_np.NDArray[np.float64],
     fs: int,
     frame_period: float = default_frame_period,
-) -> type_np.NDArray[np.float32]:
+) -> type_np.NDArray[np.float64]:
     """WORLD synthesis from parametric representation.
 
     Args:
-        f0 (type_np.NDArray[np.float32]): Input F0 contour.
-        spectrogram (type_np.NDArray[np.float32]): Spectral envelope.
-        aperiodicity (type_np.NDArray[np.float32]): Aperodicity envelope.
+        f0 (type_np.NDArray[np.float64]): Input F0 contour.
+        spectrogram (type_np.NDArray[np.float64]): Spectral envelope.
+        aperiodicity (type_np.NDArray[np.float64]): Aperodicity envelope.
         fs (int): Sample rate of input signal in Hz.
         frame_period (float, optional): Period between consecutive frames in milliseconds. Defaults to default_frame_period.
 
     Returns:
-        type_np.NDArray[np.float32]: Output waveform signal.
+        type_np.NDArray[np.float64]: Output waveform signal.
     """
     pass
 
 def wav2world(
-    x: type_np.NDArray[np.float32],
+    x: type_np.NDArray[np.float64],
     fs: int,
     fft_size: int,
     frame_period: float = default_frame_period,
 ) -> tuple[
-    type_np.NDArray[np.float32],
-    type_np.NDArray[np.float32],
-    type_np.NDArray[np.float32],
+    type_np.NDArray[np.float64],
+    type_np.NDArray[np.float64],
+    type_np.NDArray[np.float64],
 ]:
     """Convenience function to do all WORLD analysis steps in a single call.
     In this case only `frame_period` can be configured and other parameters are fixed to their defaults.
     Likewise, F0 estimation is fixed to DIO plus StoneMask refinement.
 
     Args:
-        x (type_np.NDArray[np.float32]): Input waveform signal.
+        x (type_np.NDArray[np.float64]): Input waveform signal.
         fs (int): Sample rate of input signal in Hz.
         fft_size (int):
             Length of Fast Fourier Transform (in number of samples).
@@ -280,6 +280,6 @@ def wav2world(
         frame_period (float, optional): Period between consecutive frames in milliseconds. Defaults to default_frame_period.
 
     Returns:
-        tuple[type_np.NDArray[np.float32], type_np.NDArray[np.float32], type_np.NDArray[np.float32]]: Tuple of **f0 contour**, **spectral envelope** and **aperiodicity**.
+        tuple[type_np.NDArray[np.float64], type_np.NDArray[np.float64], type_np.NDArray[np.float64]]: Tuple of **f0 contour**, **spectral envelope** and **aperiodicity**.
     """
     pass
